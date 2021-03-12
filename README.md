@@ -10,8 +10,10 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 - Unzip above package to user's Desktop folder, and rename `install` folder to `AutoIT3.app`
 
 #### 2. ImageJ
-- Download zipped ImageJ 1 (i.e. v1.53) ready-to-run package -- not Fiqi: https://wsr.imagej.net/distros/win/ij153-win-java8.zip
+- Download zipped ImageJ 1 (i.e. v1.53, NOT Fiji) ready-to-run package: https://wsr.imagej.net/distros/win/ij153-win-java8.zip
 - Unzip above package to user's Desktop folder, and rename `ImageJ` folder to `ImageJ.app`
 
 #### 3. ZLAPS
-- Download contents of 
+- Download contents of `scripts` folder in this git repository to user's Desktop folder
+
+- Create a desktop shortcut in user's Desktop folder, pointing to `"%UserProfile%\Desktop\AutoIT3.app\AutoIt3_x64.exe" %UserProfile%\Desktop\scripts\auto_zen_live.au3`
