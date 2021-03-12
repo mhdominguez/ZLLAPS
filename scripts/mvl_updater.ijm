@@ -1,10 +1,15 @@
+// ZLAPS
+// mvl_updater.ij
+// 2019-2020 Martin H. Dominguez
+// Gladstone Institutes
+
+
 
 //script:
 // check to see that we have most recent MIPs
 // register the two most recent MIPs and create an alignment matrix
 // open MVL file and update with alignment matrix, save new MVL file
 
-//run("Linear Stack Alignment with SIFT", "initial_gaussian_blur=1.60 steps_per_scale_octave=3 minimum_image_size=64 maximum_image_size=1024 feature_descriptor_size=4 feature_descriptor_orientation_bins=8 closest/next_closest_ratio=0.92 maximal_alignment_error=25 inlier_ratio=0.05 expected_transformation=Translation interpolate show_transformation_matrix");
 
 
 file_sep = File.separator();
