@@ -1,16 +1,17 @@
+; auto_live_zen.au3
+; 2019-2020 Martin H. Dominguez
+; Gladstone Institutes
+
+
 #include <GuiConstantsEx.au3>
 #include <WindowsConstants.au3>
 #include <FileConstants.au3>
-;#Include <ScreenCapture.au3>
 #include <Misc.au3>
 #include <File.au3>
 #include <Array.au3>
 #include <ButtonConstants.au3>
 #include <EditConstants.au3>
 #include <Date.au3>
-
-;TODO: test non-existence of .mvl file during live run, to ensure it proceeds backwards in count
-
 
 Func ZEN_Mark_Spot()
 
