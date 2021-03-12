@@ -6,18 +6,18 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 
 ## Install
 #### 1. AutoIT3
-- Download zipped AutoIT3 ready-to-run package (https://www.autoitscript.com/cgi-bin/getfile.pl?autoit3/autoit-v3.zip)
-- Unzip above package to user's Desktop folder, and rename `install` folder to `AutoIT3.app`
+- download zipped AutoIT3 ready-to-run package (https://www.autoitscript.com/cgi-bin/getfile.pl?autoit3/autoit-v3.zip)
+- unzip above package to user's Desktop folder, and rename `install` folder to `AutoIT3.app`
 
 #### 2. ImageJ
-- Download zipped ImageJ 1 (i.e. v1.53, NOT Fiji) ready-to-run package (https://wsr.imagej.net/distros/win/ij153-win-java8.zip)
-- Unzip above package to user's Desktop folder, and rename `ImageJ` folder to `ImageJ.app`
-- Download BioFormats plugin (https://downloads.openmicroscopy.org/bio-formats/6.6.0/artifacts/bioformats_package.jar), and move `bioformats_package.jar` file to `~\Desktop\ImageJ.app\plugins\` folder, where `~` is user profile directory
-- Download current MPICBG Plugin for ImageJ (https://maven.scijava.org/content/repositories/releases/mpicbg/mpicbg_/1.4.1/mpicbg_-1.4.1.jar), and move `mpicbg_-1.4.1.jar` file to `~\Desktop\ImageJ.app\plugins\` folder, where `~` is user profile directory
+- download zipped ImageJ 1 (i.e. v1.53, NOT Fiji) ready-to-run package (https://wsr.imagej.net/distros/win/ij153-win-java8.zip)
+- unzip above package to user's Desktop folder, and rename `ImageJ` folder to `ImageJ.app`
+- download BioFormats plugin (https://downloads.openmicroscopy.org/bio-formats/6.6.0/artifacts/bioformats_package.jar), and move `bioformats_package.jar` file to `~\Desktop\ImageJ.app\plugins\` folder, where `~` is user profile directory
+- download current MPICBG Plugin for ImageJ (https://maven.scijava.org/content/repositories/releases/mpicbg/mpicbg_/1.4.1/mpicbg_-1.4.1.jar), and move `mpicbg_-1.4.1.jar` file to `~\Desktop\ImageJ.app\plugins\` folder, where `~` is user profile directory
 
 #### 3. ZLAPS
-- Download contents of `scripts` folder in this git repository to user's Desktop folder
-- Create a desktop shortcut called `ZLAPS` in user's Desktop folder, pointing to `"%UserProfile%\Desktop\AutoIT3.app\AutoIt3_x64.exe" %UserProfile%\Desktop\scripts\auto_live_zen.au3`
+- download contents of `scripts` folder in this git repository to user's Desktop folder
+- create a desktop shortcut called `ZLAPS` in user's Desktop folder, pointing to `"%UserProfile%\Desktop\AutoIT3.app\AutoIt3_x64.exe" %UserProfile%\Desktop\scripts\auto_live_zen.au3`
 
 ## Usage
 #### 1. Open and configure ZEN
@@ -28,9 +28,12 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 - set up correct Multiview acquisition with correct angles and Z-stack start/stop positions
 
 #### 2. Open and configure ZLAPS
-a. Go back to Desktop, and double-click the `ZLAPS` shortcut
-b. 
-
-
+- go back to Desktop view, and double-click the `ZLAPS` shortcut to open ZLAPS
+- keep ZLAPS open and maximize ZEN window, then use taskbar to bring ZLAPS to foreground
+- follow step-by-step instructions in ZLAPS window, including locating `ImageJ.exe` file, identifying location on screen where `Start Experiment` button, `MultiViewList Open`, aand `MultiViewList Save` button are located within `Acquisition` page
+- continue ZLAPS step-by-step instructions, including selection of time interval (minutes), CZI save director, and starting timepoint index number (ZLAPS will name all files `LSFM_TXXXX.czi` by timepoint number), and channel number (if prompted: 0 is first channel, 1 is second, etc.)
 
 #### 3. Go!
+- when everything is ready, hit `Start` button in ZLAPS; ZLAPS will control ZEN to acquire images to the chosen directory, at the chosen time interval
+- periodically, you can stop the ZLAPS acquisition, re-center the specimen, adjust lightsheet position, confirm incubation settings, and choose `Reset Positioning` before restarting
+- you can also use `Reset Positioning` if you manually re-center the specimen between acqusitions, without stopping ZLAPS 
