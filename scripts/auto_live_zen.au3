@@ -161,8 +161,8 @@ Local $run_fiji_time = 0
 ;Local $fDiff = TimerDiff($hTimer) ; Find the difference in time from the previous call of TimerInit. The variable we stored the TimerInit handlem is passed as the "handle" to TimerDiff.
 
 ;DEBUG: establish logging
-;Local $h_logfile = FileOpen("%userprofile%\Desktop\" & "auto_live_embryo_auit3.log", 1)
-Local $s_logfile = "%userprofile%\Desktop\" & "auto_live_embryo_auit3.log"
+;Local $h_logfile = FileOpen("%userprofile%\Desktop\" & "auto_live_zen_auit3.log", 1)
+Local $s_logfile = "%userprofile%\Desktop\" & "auto_live_zen_auit3.log"
 
 
 ; Main loop here
@@ -349,7 +349,7 @@ Func ChooseSaveDir()
 	;WinWait($sZEN_window_title)
 	;Sleep(500)
 	; DEBUG: set logfile to this folder location
-	$s_logfile = $ssave_dir & "\auto_live_embryo_auit3.log"
+	$s_logfile = $ssave_dir & "\auto_live_zen_auit3.log"
 EndFunc
 
 
