@@ -23,9 +23,9 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 #### 1. Open and configure ZEN
 - open Zeiss ZEN software, and in the `Acquisition` tab, check "Z-stack", "Multiview Acquisition" (even if only acquiring one view), but DO NOT select "Time Series"
 - configure proper laser/light path, incubation, objective/magnification, and channels
-- select saving all views and channels to a single CZI file
+- select appropriate options for file output so that all views and channels are saved to a single CZI file
 - position specimen roughly in view, and establish correct light sheet position (this can/should be manually adjusted periodically during the experiment)
-- set up correct Multiview acquisition with correct angles and Z-stack start/stop positions
+- set up the desired Multiview acquisition with correct angles and Z-stack start/stop positions
 
 #### 2. Open and configure ZLAPS
 - go back to Desktop view, and double-click the `ZLAPS` shortcut to open ZLAPS
