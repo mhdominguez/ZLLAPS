@@ -13,7 +13,7 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 - download zipped ImageJ 1 (i.e. v1.53, NOT Fiji) ready-to-run package (https://wsr.imagej.net/distros/win/ij153-win-java8.zip)
 - unzip above package to user's Desktop folder, and rename `ImageJ` folder to `ImageJ.app`
 - download BioFormats plugin (https://downloads.openmicroscopy.org/bio-formats/6.6.0/artifacts/bioformats_package.jar), and move `bioformats_package.jar` file to `~\Desktop\ImageJ.app\plugins\` folder, where `~` is user profile directory
-- download current MPICBG Plugin for ImageJ (https://maven.scijava.org/content/repositories/releases/mpicbg/mpicbg_/1.4.1/mpicbg_-1.4.1.jar), and move `mpicbg_-1.4.1.jar` file to `~\Desktop\ImageJ.app\plugins\` folder, where `~` is user profile directory
+- download both MPICBG Plugin libraries for ImageJ (https://maven.scijava.org/content/repositories/releases/mpicbg/mpicbg_/1.4.1/mpicbg_-1.4.1.jar AND https://maven.scijava.org/content/repositories/releases/mpicbg/mpicbg/1.4.1/mpicbg-1.4.1.jar), and move `mpicbg_-1.4.1.jar` and `mpicbg-1.4.1.jar` files to `~\Desktop\ImageJ.app\plugins\` folder, where `~` is user profile directory
 
 #### 3. ZLAPS
 - download contents of `scripts` folder in this git repository to user's Desktop folder
