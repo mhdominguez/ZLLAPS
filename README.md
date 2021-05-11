@@ -16,7 +16,7 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 - download both MPICBG Plugin libraries for ImageJ (https://maven.scijava.org/content/repositories/releases/mpicbg/mpicbg_/1.4.1/mpicbg_-1.4.1.jar AND https://maven.scijava.org/content/repositories/releases/mpicbg/mpicbg/1.4.1/mpicbg-1.4.1.jar), and move `mpicbg_-1.4.1.jar` and `mpicbg-1.4.1.jar` files to `~\Desktop\ImageJ.app\plugins\` folder, where `~` is user profile directory
 
 #### 3. ZLAPS
-- download contents of `scripts` folder in this git repository to user's Desktop folder
+- download `scripts` folder (and its contents) in this git repository to user's Desktop folder
 - create a desktop shortcut called `ZLAPS` in user's Desktop folder, pointing to `"%UserProfile%\Desktop\AutoIT3.app\AutoIt3_x64.exe" %UserProfile%\Desktop\scripts\auto_live_zen.au3`
 
 ## Usage
