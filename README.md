@@ -31,7 +31,7 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 - go back to Desktop view, and double-click the `ZLAPS` shortcut to open ZLAPS
 - keep ZLAPS open and maximize ZEN window, then use taskbar to bring ZLAPS to foreground
 - follow step-by-step instructions in ZLAPS window, including locating `ImageJ.exe` file, identifying location on screen where `Start Experiment` button, `MultiViewList Open`, aand `MultiViewList Save` button are located within `Acquisition` page
-- continue ZLAPS step-by-step instructions, including selection of time interval (minutes), CZI save director, and starting timepoint index number (ZLAPS will name all files `LSFM_TXXXX.czi` by timepoint number), and channel number (if prompted: 0 is first channel, 1 is second, etc.)
+- continue ZLAPS step-by-step instructions, including selection of time interval (minutes), CZI save directory, starting timepoint index number (ZLAPS will name all files `LSFM_TXXXX.czi` by timepoint number), and channel number to use for registering consecutive timepoints(if prompted: 0 is first channel, 1 is second, etc.)
 
 #### 3. Go!
 - when everything is ready, hit `Start` button in ZLAPS; ZLAPS will control ZEN to acquire images to the chosen directory, at the chosen time interval
