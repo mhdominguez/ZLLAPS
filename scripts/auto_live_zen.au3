@@ -136,11 +136,17 @@ Local $hSave_Label = GUICtrlCreateLabel("None Selected", 170, 282, 300, 20)
 
 ;10. Choose starting index number
 Local $hInput_Label_3 = GUICtrlCreateLabel("9. Set start index number:", 10,315, 140, 20)
-Local $hInput_Box_2 = GUICtrlCreateInput( "0", 150, 312, 40, 20, BitOR($ES_NUMBER,$ES_RIGHT) )
+Local $hInput_Box_2 = GUICtrlCreateInput( "0", 134, 312, 40, 20, BitOR($ES_NUMBER,$ES_RIGHT) )
 ;$hInput_Label_2 = GUICtrlCreateLabel("minutes", 240, 230, 40, 20)
 Local $n_image_index = Number(GUICtrlRead($hInput_Box_2)) ;global variable that stores the current index number
 
-;11. Go!
+;11. Choose registration channel
+Local $hInput_Label_4 = GUICtrlCreateLabel("10. Registration channel:", 10,345, 140, 20)
+Local $hInput_Box_3 = GUICtrlCreateInput( "0", 134, 342, 30, 20, BitOR($ES_NUMBER,$ES_RIGHT) )
+;$hInput_Label_2 = GUICtrlCreateLabel("minutes", 240, 230, 40, 20)
+Local $channel_to_use = Number(GUICtrlRead($hInput_Box_3)) ;global variable that stores channel to use
+
+;12. Go!
 $hStart_Button = GUICtrlCreateButton("Start",    10, 390, 80, 30)
 GUICtrlSetOnEvent($hStart_Button, "StartPushed")
 $hCancel_Button = GUICtrlCreateButton("Quit",    100, 390, 80, 30)
@@ -157,6 +163,7 @@ Local $hTimer = TimerInit() ; Begin the timer and store the handle in a variable
 Local $StartButtonCRC
 Local $run_fiji = -2
 Local $run_fiji_time = 0
+Local $start_ever_pushed = false
 ;Sleep(3000) ; Sleep for 3 seconds.
 ;Local $fDiff = TimerDiff($hTimer) ; Find the difference in time from the previous call of TimerInit. The variable we stored the TimerInit handlem is passed as the "handle" to TimerDiff.
 
@@ -189,7 +196,7 @@ While 1
 					$run_fiji = -1 ;reset runfiji so we do it next time
 					GuiCtrlSetState ($hReset_Button, $GUI_ENABLE)
 					If FileExists( $sfiji_binary ) And $run_fiji_time < $NextTime Then
-						$run_fiji = Run($sfiji_binary & ' -macro "' & @ScriptDir & '\mvl_updater.ijm" "' & $ssave_dir & '"', $ssave_dir)
+						$run_fiji = Run($sfiji_binary & ' -macro "' & @ScriptDir & '\mvl_updater.ijm" "' & $ssave_dir & '###' & String($channel_to_use) & '"', $ssave_dir)
 						GuiCtrlSetState ($hReset_Button, $GUI_DISABLE)
 						$run_fiji_time = $NextTime
 					EndIf
@@ -318,7 +325,6 @@ Func PickFijiBinary()
 	$sfiji_binary = FileOpenDialog("Select ImageJ/Fiji Binary File", "%userprofile%\Desktop\ImageJ.app", "Executable (*.exe)", $FD_FILEMUSTEXIST )
 	;GUICtrlSetData($hFiji_Label, $sfiji_binary )
 	GUICtrlSetData($hFiji_Label, StringLeft($sfiji_binary,30) & " ..." )
-	;$run_fiji = RunWait($sfiji_binary & ' -macro "' & @ScriptDir & '\mvl_updater.ijm"', $ssave_dir)
  EndFunc
 
 Func ResetPushed()
@@ -329,9 +335,11 @@ Func ResetPushed()
 			GuiCtrlSetState ($hReset_Button, $GUI_DISABLE)
 		Else
 			$run_fiji = -2 ;reset runfiji so we do it next time as if it was a new start
+			$channel_to_use = Number(GUICtrlRead($hInput_Box_3))
 		EndIf
 	Else
 		$run_fiji = -2 ;reset runfiji so we do it next time as if it was a new start
+		$channel_to_use = Number(GUICtrlRead($hInput_Box_3))
 	EndIf
 	GuiCtrlSetState ($hReset_Button, $GUI_DISABLE)
 EndFunc
@@ -364,7 +372,14 @@ Func StartPushed()
 	Else
 		$n_image_index = GUICtrlRead($hInput_Box_2)
 
+		If $start_ever_pushed = true Then ; if start has been pushed before, inherit channel to register to (user has to choose "Reset Positioning" to change channel in this case, otherwise, grab number from dialog box
+			GUICtrlSetData($hInput_Box_3,Number($channel_to_use))
+		Else
+			$channel_to_use = Number(GUICtrlRead($hInput_Box_3))
+		EndIf
+		$start_ever_pushed = true
 		$n_time_diff_next = Number(GUICtrlRead($hInput_Box_1))
+
 		If IsNumber($n_time_diff_next) And $n_time_diff_next > 0 Then
 			;do nothing
 		Else
@@ -396,6 +411,7 @@ Func StartPushed()
 		;DEBUG: logging activity
 
 	EndIf
+
 EndFunc
 
 ;Func GoExperiment()
@@ -803,7 +819,8 @@ Func GoAcquire($next_time)
 			;run IJ script here
 			;MsgBox( $MB_OK, "Running ImageJ", "Yipee" )
 			_FileWriteLog ( $s_logfile, _NowTime(5) & "   GoAcquire running fiji, current return time is: " & $return_time  ) ;DEBUG: TODO: comment me
-			$run_fiji = Run($sfiji_binary & ' -macro "' & @ScriptDir & '\mvl_updater.ijm" "' & $ssave_dir & '"', $ssave_dir)
+			;$run_fiji = Run($sfiji_binary & ' -macro "' & @ScriptDir & '\mvl_updater.ijm" "' & $ssave_dir & '"', $ssave_dir)
+			$run_fiji = Run($sfiji_binary & ' -macro "' & @ScriptDir & '\mvl_updater.ijm" "' & $ssave_dir & '###' & String($channel_to_use) & '"', $ssave_dir)
 			$run_fiji_time = $return_time ;let us know that we ran imageJ on this run of GoAcquire
 			GuiCtrlSetState ($hReset_Button, $GUI_DISABLE)
 			;ImageJ-win64.exe -macro Test D:\In.tif#D:\Out3.tif

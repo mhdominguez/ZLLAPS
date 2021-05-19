@@ -13,7 +13,7 @@
 
 
 file_sep = File.separator();
-channel_to_use = 0; //0=green, 1=red
+channel_to_use = 0; //0=green, 1=red for typical live setup
 
 
 function return_timestamp_text() {
@@ -276,7 +276,7 @@ function update_MVL(directory,input_array) { //,this_file_number) {
 		//print( "About to concatenate: " + img_id_array[0] + " " + img_id_array[1]  );
 		run("Concatenate...", "open image1=[" + this_start_image_a + "] image2=[" + this_finish_image_a + "]");
 		concat_stack = getImageID();
-		run("Linear Stack Alignment with SIFT", "initial_gaussian_blur=1.0 steps_per_scale_octave=3 minimum_image_size=64 maximum_image_size=1024 feature_descriptor_size=12 feature_descriptor_orientation_bins=8 closest/next_closest_ratio=0.96 maximal_alignment_error=25 inlier_ratio=0.05 expected_transformation=Translation interpolate show_transformation_matrix");
+		run("Linear Stack Alignment with SIFT", "initial_gaussian_blur=1.1 steps_per_scale_octave=3 minimum_image_size=64 maximum_image_size=1024 feature_descriptor_size=12 feature_descriptor_orientation_bins=8 closest/next_closest_ratio=0.96 maximal_alignment_error=25 inlier_ratio=0.05 expected_transformation=Translation interpolate show_transformation_matrix");
 		log_lines = split(getInfo("log"), "\n");
 		close();
 
@@ -425,7 +425,7 @@ function update_MVL(directory,input_array) { //,this_file_number) {
 		run("Concatenate...", "open image1=[" + this_start_image_b + "] image2=[" + this_finish_image_b + "]");
 		concat_stack = getImageID();
 		//run("Linear Stack Alignment with SIFT", "initial_gaussian_blur=1.60 steps_per_scale_octave=10 minimum_image_size=64 maximum_image_size=1024 feature_descriptor_size=8 feature_descriptor_orientation_bins=8 closest/next_closest_ratio=0.92 maximal_alignment_error=25 inlier_ratio=0.05 expected_transformation=Translation interpolate show_transformation_matrix");
-		run("Linear Stack Alignment with SIFT", "initial_gaussian_blur=1.00 steps_per_scale_octave=10 minimum_image_size=64 maximum_image_size=1024 feature_descriptor_size=12 feature_descriptor_orientation_bins=8 closest/next_closest_ratio=0.96 maximal_alignment_error=25 inlier_ratio=0.05 expected_transformation=Translation interpolate show_transformation_matrix");
+		run("Linear Stack Alignment with SIFT", "initial_gaussian_blur=1.1 steps_per_scale_octave=7 minimum_image_size=64 maximum_image_size=1024 feature_descriptor_size=12 feature_descriptor_orientation_bins=8 closest/next_closest_ratio=0.96 maximal_alignment_error=25 inlier_ratio=0.05 expected_transformation=Translation interpolate show_transformation_matrix");
 		log_lines = split(getInfo("log"), "\n");
 		close();
 
@@ -741,6 +741,13 @@ function return_two_most_recent_MIPs(directory,current_MVL_identity) { //,this_f
 					close();
 				}
 
+                //remove background within the stack
+                run("Z Project...", "projection=[Min Intensity]");
+				average_img = getTitle();
+				imageCalculator("Subtract stack",img_id_orig,average_img);
+				selectWindow(average_img);
+				close();
+
 				//create MIP -- from front
 				run("Z Project...", "projection=[Max Intensity] all");
 				run("Enhance Contrast...", "saturated=0.001 normalize");
@@ -786,7 +793,10 @@ function return_two_most_recent_MIPs(directory,current_MVL_identity) { //,this_f
 }
 
 
-//main section here
+/*
+ * Main here
+ *
+ */
 
 //parse/process command line
 arglist = getArgument();
@@ -799,14 +809,17 @@ if (arglist == "" ) {
 		//Ask user to choose the input and output directories
 		in_directory = getDirectory("Choose input directory");
 	}
-
+	if ( list.length > 1 ) {
+		suggested_channel = parseInt(list[1]);
+		if ( isNaN(suggested_channel) || suggested_channel < 0 ) {
+			//do nothing
+		} else {
+			channel_to_use = suggested_channel;
+		}
+	}
 }
 
-
-/*
- * Main here
- *
- */
+//now do the work of main section
 setBatchMode(true);
 name_of_this_MVL = return_most_recent_MVL(in_directory);
 if ( name_of_this_MVL == NaN || name_of_this_MVL == "" ) {
