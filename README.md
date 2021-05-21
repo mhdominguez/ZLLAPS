@@ -23,8 +23,8 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 #### 1. Open and configure ZEN
 - open Zeiss ZEN software, and in the `Acquisition` tab, check "Z-stack", "Multiview Acquisition" (even if only acquiring one view), but DO NOT select "Time Series"
 - configure proper laser/light path, incubation, objective/magnification, and channels
-- select appropriate options for file output so that all views and channels are saved to a single CZI file
-- position specimen roughly in view, and establish correct light sheet position (this can/should be manually adjusted periodically during the experiment)
+- select ZEN file output options, so that all views and channels are saved to a single CZI file
+- position the specimen roughly in view, and establish correct light sheet position (this can/should be manually adjusted periodically during the experiment)
 - set up the desired Multiview acquisition with correct angles and Z-stack start/stop positions
 
 #### 2. Open and configure ZLAPS
@@ -35,5 +35,14 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 
 #### 3. Go!
 - when everything is ready, hit `Start` button in ZLAPS; ZLAPS will control ZEN to acquire images to the chosen directory, at the chosen time interval
-- periodically, you can stop the ZLAPS acquisition, re-center the specimen, adjust lightsheet position (highly recommended for long runs 6h+), confirm the incubation settings, and choose `Reset Positioning` before restarting
+- periodically, you can stop the ZLAPS acquisition, adjust lightsheet position (highly recommended for long runs 6h+), confirm the incubation settings, re-center the specimen and use `Reset Positioning`, all before restarting using `Start`
 - you can also use `Reset Positioning` if you manually re-center the specimen between acqusitions, without stopping ZLAPS 
+
+#### 4. Previewing Acquisitions
+- previewing the experiment is easy, even without running additional scripts, using the following steps in ImageJ or Fiji:
+  - File -> Import Image Sequence -> choose any .tif file in `MVL_updater` sub-directory within the CZI save directory
+  - select `Use virtual stack`, and type `File name contains` “V00a” or something like that...
+      ‘V00’, ‘V01’, and ‘V02’ are the views, for example, if you have three views
+      ‘a’ is Z max projection (used for registering in XY)
+      ‘b’ is X max projection (used for registering in Z)
+  - you can take the time series stack you just opened, and use the Linear Stack Alignment with SIFT plugin with modest parameters (ie min/max image size of 32 and 512) to remove the jitter
