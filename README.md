@@ -40,9 +40,9 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 
 #### 4. Previewing Acquisitions
 - previewing the experiment is easy, even without running additional scripts, using the following steps in ImageJ or Fiji:
-  - File -> Import Image Sequence -> choose any .tif file in `MVL_updater` sub-directory within the CZI save directory
+  - File -> Import Image Sequence -> choose any .tif file in `MVL_Updater` sub-directory within the CZI save directory
   - select `Use virtual stack`, and type `File name contains` “V00a” or something like that...
-      ‘V00’, ‘V01’, and ‘V02’ are the views, for example, if you have three views
-      ‘a’ is Z max projection (used for registering in XY)
-      ‘b’ is X max projection (used for registering in Z)
-  - you can take the time series stack you just opened, and use the Linear Stack Alignment with SIFT plugin with modest parameters (ie min/max image size of 32 and 512) to remove the jitter
+    - ‘V00’, ‘V01’, and ‘V02’ are the views, for example, if you have three views
+    - ‘a’ is Z max projection (used for registering in XY)
+    - ‘b’ is X max projection (used for registering in Z)
+  - once the time series is opened, use the Linear Stack Alignment with SIFT plugin with modest parameters (i.e. min/max image size of 32 and 512) to remove jitter
