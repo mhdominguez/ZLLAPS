@@ -35,5 +35,5 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 
 #### 3. Go!
 - when everything is ready, hit `Start` button in ZLAPS; ZLAPS will control ZEN to acquire images to the chosen directory, at the chosen time interval
-- periodically, you can stop the ZLAPS acquisition, re-center the specimen, adjust lightsheet position, confirm incubation settings, and choose `Reset Positioning` before restarting
+- periodically, you can stop the ZLAPS acquisition, re-center the specimen, adjust lightsheet position (highly recommended for long runs 6h+), confirm the incubation settings, and choose `Reset Positioning` before restarting
 - you can also use `Reset Positioning` if you manually re-center the specimen between acqusitions, without stopping ZLAPS 
