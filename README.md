@@ -17,7 +17,7 @@ Requires Zeiss ZEN workstation on MS Windows x64, with multiview acquisition (i.
 
 #### 3. ZLAPS
 - download `scripts` folder (and its contents) in this git repository to user's Desktop folder
-- create a desktop shortcut called `ZLAPS` in user's Desktop folder, pointing to `"%UserProfile%\Desktop\AutoIT3.app\AutoIt3_x64.exe" %UserProfile%\Desktop\scripts\auto_live_zen.au3`
+- create a desktop shortcut called `ZLAPS` in user's Desktop folder, pointing to `"%UserProfile%\Desktop\AutoIT3.app\AutoIt3_x64.exe" "%UserProfile%\Desktop\scripts\auto_live_zen.au3"`
 
 ## Usage
 #### 1. Open and configure ZEN
